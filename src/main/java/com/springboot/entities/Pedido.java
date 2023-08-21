@@ -25,7 +25,7 @@ public class Pedido implements Serializable {
 	private Long id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant data;
-	private StatusPedido statusPedido;
+	private Integer statusPedido;
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Usuario cliente;
@@ -36,7 +36,7 @@ public class Pedido implements Serializable {
 		super();
 		this.id = id;
 		this.data = data;
-		this.statusPedido = statusPedido;
+		setStatusPedido(statusPedido);
 		this.cliente = cliente;
 	}
 
@@ -57,11 +57,12 @@ public class Pedido implements Serializable {
 	}
 
 	public StatusPedido getStatusPedido() {
-		return statusPedido;
+		return StatusPedido.valueOf(statusPedido);
 	}
 
 	public void setStatusPedido(StatusPedido statusPedido) {
-		this.statusPedido = statusPedido;
+		if(statusPedido != null)
+			this.statusPedido = statusPedido.getCode();
 	}
 
 	public Usuario getCliente() {
