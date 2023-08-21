@@ -1,18 +1,22 @@
 package com.springboot.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -22,6 +26,9 @@ public class Usuario implements Serializable {
 	private String email;
 	private String telefone;
 	private String senha;
+	@OneToMany(mappedBy = "cliente")
+	@JsonIgnore
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Usuario() {}
 	
@@ -72,6 +79,10 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
 	@Override
