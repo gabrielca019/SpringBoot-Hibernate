@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.springboot.entities.Categoria;
+import com.springboot.entities.ItemPedido;
 import com.springboot.entities.Pedido;
 import com.springboot.entities.Produto;
 import com.springboot.entities.Usuario;
 import com.springboot.enums.StatusPedido;
 import com.springboot.repositories.ICategoriaRepository;
+import com.springboot.repositories.IItemPedidoRepository;
 import com.springboot.repositories.IPedidoRepository;
 import com.springboot.repositories.IProdutoRepository;
 import com.springboot.repositories.IUsuarioRepository;
@@ -30,6 +32,8 @@ public class testConfig implements CommandLineRunner {
 	private ICategoriaRepository categoriaRepository;
 	@Autowired
 	private IProdutoRepository produtoRepository;
+	@Autowired
+	private IItemPedidoRepository itemPedidoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -66,5 +70,12 @@ public class testConfig implements CommandLineRunner {
 		pr5.getCategorias().add(ca2);
 		
 		produtoRepository.saveAll(Arrays.asList(pr1, pr2, pr3, pr4, pr5));
+		
+		ItemPedido ip1 = new ItemPedido(pe1, pr1, 2, pr1.getPreco()); 
+		ItemPedido ip2 = new ItemPedido(pe1, pr3, 1, pr3.getPreco()); 
+		ItemPedido ip3 = new ItemPedido(pe2, pr3, 2, pr3.getPreco()); 
+		ItemPedido ip4 = new ItemPedido(pe3, pr5, 2, pr5.getPreco());
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3, ip4));
 	}
 }
