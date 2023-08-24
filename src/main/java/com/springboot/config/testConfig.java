@@ -74,7 +74,7 @@ public class testConfig implements CommandLineRunner {
 		
 		ItemPedido ip1 = new ItemPedido(pe1, pr1, 2, pr1.getPreco()); 
 		ItemPedido ip2 = new ItemPedido(pe1, pr3, 1, pr3.getPreco()); 
-		ItemPedido ip3 = new ItemPedido(pe2, pr3, 2, pr3.getPreco()); 
+		ItemPedido ip3 = new ItemPedido(pe2, pr3, 2, pr3.getPreco());
 		ItemPedido ip4 = new ItemPedido(pe3, pr5, 2, pr5.getPreco());
 		
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3, ip4));

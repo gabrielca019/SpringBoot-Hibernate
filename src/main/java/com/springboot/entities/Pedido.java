@@ -111,4 +111,11 @@ public class Pedido implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 	
+	public double getValorTotal() {
+		double total = 0.0;
+		for(ItemPedido ip : itensPedido) 
+			total += ip.getSubTotal();
+		return total;
+	}
+	
 }
